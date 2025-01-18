@@ -1,0 +1,12 @@
+services:
+  app:
+    build:
+      context: .
+      target: ${ENVIRONMENT:-development}
+    ports:
+      - "${PORT:-3000}:${PORT:-3000}"  # Dynamic port mapping based on the PORT variable
+    env_file:
+      - .env.${ENVIRONMENT:-development}
+    volumes:
+      - .:/app
+      - /app/node_modules
